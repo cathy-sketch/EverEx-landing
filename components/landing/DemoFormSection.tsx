@@ -102,7 +102,7 @@ export default function DemoFormSection() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate(data, t.demo.errors);
     if (Object.keys(errs).length > 0) {
@@ -110,8 +110,18 @@ export default function DemoFormSection() {
       return;
     }
     setStatus('submitting');
-    // MVP: simulate async submit
-    setTimeout(() => setStatus('success'), 800);
+    const res = await fetch('/api/demo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (res.ok) {
+      setStatus('success');
+    } else {
+      const json = await res.json();
+      alert(json.error ?? '제출 중 오류가 발생했습니다.');
+      setStatus('idle');
+    }
   };
 
   if (status === 'success') {
