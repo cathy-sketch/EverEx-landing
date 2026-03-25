@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -9,6 +9,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: '필수 항목을 입력해주세요.' }, { status: 400 });
   }
 
+  const supabase = getSupabase();
   const { error } = await supabase.from('demo_requests').insert({
     name: name.trim(),
     organization: organization.trim(),
