@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* IBM Carbon Design System Tokens */
+:root {
+  /* Background */
+  --cds-background: #ffffff;
+  --cds-background-hover: #e8e8e8;
+  --cds-layer-01: #f4f4f4;
+  --cds-layer-02: #ffffff;
+  --cds-layer-hover: #e8e8e8;
+
+  /* Text */
+  --cds-text-primary: #161616;
+  --cds-text-secondary: #525252;
+  --cds-text-placeholder: #a8a8a8;
+  --cds-text-on-color: #ffffff;
+  --cds-text-disabled: #c6c6c6;
+
+  /* Interactive / Brand */
+  --cds-interactive: #0f62fe;
+  --cds-link-primary: #0f62fe;
+  --cds-link-primary-hover: #0043ce;
+  --cds-focus: #0f62fe;
+
+  /* Button */
+  --cds-button-primary: #0f62fe;
+  --cds-button-primary-hover: #0353e9;
+  --cds-button-danger: #da1e28;
+  --cds-button-danger-hover: #b81921;
+
+  /* Border */
+  --cds-border-subtle: #e0e0e0;
+  --cds-border-strong: #8d8d8d;
+  --cds-border-interactive: #0f62fe;
+
+  /* Support */
+  --cds-support-error: #da1e28;
+  --cds-support-success: #24a148;
+
+  /* Font */
+  --cds-font-family: var(--font-ibm-plex-sans), 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --cds-font-family-mono: var(--font-ibm-plex-mono), 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+@theme inline {
+  --color-cds-background: var(--cds-background);
+  --color-cds-layer-01: var(--cds-layer-01);
+  --color-cds-interactive: var(--cds-interactive);
+  --font-sans: var(--cds-font-family);
+  --font-mono: var(--cds-font-family-mono);
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--cds-layer-01);
+  color: var(--cds-text-primary);
+  font-family: var(--cds-font-family);
+  font-size: 0.875rem;
+  line-height: 1.428571429;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Carbon-style focus ring */
+*:focus-visible {
+  outline: 2px solid var(--cds-focus);
+  outline-offset: -2px;
+}
