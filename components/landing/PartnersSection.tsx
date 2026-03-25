@@ -19,87 +19,129 @@ const PARTNERS = {
   ],
 };
 
-function PartnerGroup({ title, partners }: { title: string; partners: { name: string; abbr: string }[] }) {
-  return (
-    <div>
-      <p style={{
-        fontSize: '0.75rem',
-        letterSpacing: '0.32px',
-        textTransform: 'uppercase',
-        color: '#525252',
-        marginBottom: '1rem',
-        borderBottom: '1px solid #e0e0e0',
-        paddingBottom: '0.5rem',
-      }}>
-        {title}
-      </p>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-        {partners.map(p => (
-          <div
-            key={p.name}
-            title={p.name}
-            style={{
-              backgroundColor: '#ffffff',
-              border: '1px solid #e0e0e0',
-              padding: '1rem 1.5rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              minWidth: '120px',
-              fontSize: '0.875rem',
-              fontWeight: 600,
-              color: '#161616',
-              letterSpacing: '0.5px',
-            }}
-          >
-            {p.abbr}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export default function PartnersSection() {
   const { t } = useLocale();
+  const allPartners = [...PARTNERS.strategic, ...PARTNERS.global, ...PARTNERS.healthcare];
 
   return (
     <section
       id="partners"
       style={{
-        backgroundColor: '#ffffff',
-        padding: '5rem 1rem',
-        borderTop: '1px solid #e0e0e0',
+        backgroundColor: '#191f28',
+        padding: '6rem 1.5rem',
       }}
     >
-      <div style={{ maxWidth: '1584px', margin: '0 auto' }}>
-        <div style={{ marginBottom: '3rem' }}>
-          <p style={{
-            fontSize: '0.75rem',
-            letterSpacing: '0.32px',
-            color: '#0f62fe',
-            textTransform: 'uppercase',
-            marginBottom: '0.5rem',
+      <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
+        <div style={{ marginBottom: '3.5rem', textAlign: 'center' }}>
+          <span style={{
+            display: 'inline-block',
+            fontSize: '0.875rem',
+            fontWeight: 600,
+            color: '#3182f6',
+            backgroundColor: 'rgba(49,130,246,0.15)',
+            borderRadius: '100px',
+            padding: '0.3rem 1rem',
+            marginBottom: '1rem',
           }}>
             Ecosystem
-          </p>
+          </span>
           <h2 style={{
-            fontSize: 'clamp(1.75rem, 3vw, 2.625rem)',
-            fontWeight: 300,
-            color: '#161616',
-            marginBottom: '0.75rem',
+            fontSize: 'clamp(1.875rem, 4vw, 3rem)',
+            fontWeight: 700,
+            color: '#ffffff',
+            marginBottom: '1rem',
+            letterSpacing: '-0.5px',
+            wordBreak: 'keep-all',
           }}>
             {t.partners.title}
           </h2>
-          <p style={{ fontSize: '1rem', color: '#525252', maxWidth: '560px' }}>
+          <p style={{
+            fontSize: '1.125rem',
+            color: '#8b95a1',
+            maxWidth: '500px',
+            margin: '0 auto',
+            lineHeight: 1.6,
+            wordBreak: 'keep-all',
+          }}>
             {t.partners.subtitle}
           </p>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
-          <PartnerGroup title={t.partners.strategic} partners={PARTNERS.strategic} />
-          <PartnerGroup title={t.partners.global} partners={PARTNERS.global} />
-          <PartnerGroup title={t.partners.healthcare} partners={PARTNERS.healthcare} />
+        {/* Partner logos grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
+          gap: '1rem',
+        }}>
+          {allPartners.map(p => (
+            <div
+              key={p.name}
+              title={p.name}
+              style={{
+                backgroundColor: 'rgba(255,255,255,0.06)',
+                borderRadius: '14px',
+                padding: '1.5rem 1rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '0.9375rem',
+                fontWeight: 700,
+                color: '#c6cdd4',
+                letterSpacing: '0.5px',
+                border: '1px solid rgba(255,255,255,0.08)',
+                transition: 'background-color 150ms, color 150ms',
+                cursor: 'default',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLDivElement).style.backgroundColor = 'rgba(49,130,246,0.12)';
+                (e.currentTarget as HTMLDivElement).style.color = '#3182f6';
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLDivElement).style.backgroundColor = 'rgba(255,255,255,0.06)';
+                (e.currentTarget as HTMLDivElement).style.color = '#c6cdd4';
+              }}
+            >
+              {p.abbr}
+            </div>
+          ))}
+        </div>
+
+        {/* Sub-category labels */}
+        <div style={{
+          display: 'flex',
+          gap: '1rem',
+          marginTop: '2.5rem',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+        }}>
+          {[
+            { label: t.partners.strategic, count: PARTNERS.strategic.length },
+            { label: t.partners.global, count: PARTNERS.global.length },
+            { label: t.partners.healthcare, count: PARTNERS.healthcare.length },
+          ].map(({ label, count }) => (
+            <div key={label} style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              fontSize: '0.875rem',
+              color: '#6b7684',
+              fontWeight: 500,
+            }}>
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '20px',
+                height: '20px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(49,130,246,0.15)',
+                color: '#3182f6',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+              }}>{count}</span>
+              {label}
+            </div>
+          ))}
         </div>
       </div>
     </section>

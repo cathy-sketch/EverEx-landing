@@ -1,11 +1,9 @@
 'use client';
 
 import { useLocale } from './LocaleContext';
-import { Locale } from './i18n';
 
 export default function Header() {
   const { locale, setLocale, t } = useLocale();
-
   const toggleLocale = () => setLocale(locale === 'ko' ? 'en' : 'ko');
 
   return (
@@ -13,16 +11,16 @@ export default function Header() {
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      backgroundColor: '#161616',
-      borderBottom: '1px solid #393939',
-      height: '3rem',
+      backgroundColor: 'rgba(255,255,255,0.92)',
+      backdropFilter: 'blur(12px)',
+      borderBottom: '1px solid #f2f4f6',
+      height: '64px',
       display: 'flex',
       alignItems: 'center',
-      paddingLeft: '1rem',
-      paddingRight: '1rem',
+      padding: '0 1.5rem',
     }}>
       <div style={{
-        maxWidth: '1584px',
+        maxWidth: '1040px',
         width: '100%',
         margin: '0 auto',
         display: 'flex',
@@ -30,73 +28,101 @@ export default function Header() {
         justifyContent: 'space-between',
       }}>
         {/* Brand */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <svg viewBox="0 0 32 32" width="20" height="20" fill="white" aria-hidden="true">
-            <path d="M0 24.772h32v1.783H0zm0-4.454h32v1.786H0zm4.456-4.455h23.091v1.786H4.456zm0-4.455h23.091v1.783H4.456zM0 7.454h32v1.783H0zm0-4.457h32v1.786H0z" />
-          </svg>
-          <span style={{
-            color: '#ffffff',
-            fontSize: '0.875rem',
-            fontWeight: 600,
-            letterSpacing: '0.1px',
+        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
+          <div style={{
+            width: '32px',
+            height: '32px',
+            backgroundColor: '#3182f6',
+            borderRadius: '8px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}>
+            <span style={{ color: '#fff', fontSize: '0.875rem', fontWeight: 700 }}>E</span>
+          </div>
+          <span style={{ color: '#191f28', fontSize: '1rem', fontWeight: 700 }}>
             {t.header.brand}
           </span>
-        </div>
+        </a>
 
         {/* Nav */}
         <nav style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
           {([
             ['#products', t.header.nav.products],
             ['#awards', t.header.nav.awards],
-            ['#demo', t.header.nav.demo],
           ] as [string, string][]).map(([href, label]) => (
             <a
               key={href}
               href={href}
               style={{
-                color: '#c6c6c6',
-                fontSize: '0.875rem',
+                color: '#6b7684',
+                fontSize: '0.9375rem',
+                fontWeight: 500,
                 textDecoration: 'none',
-                padding: '0 0.75rem',
-                height: '3rem',
-                display: 'flex',
-                alignItems: 'center',
-                transition: 'background-color 70ms',
+                padding: '0.5rem 0.875rem',
+                borderRadius: '8px',
+                transition: 'background-color 150ms, color 150ms',
               }}
-              onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#262626')}
-              onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'transparent')}
+              onMouseEnter={e => {
+                e.currentTarget.style.backgroundColor = '#f2f4f6';
+                e.currentTarget.style.color = '#191f28';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = '#6b7684';
+              }}
             >
               {label}
             </a>
           ))}
 
-          {/* Language toggle */}
           <button
             onClick={toggleLocale}
-            aria-label="언어 전환 / Switch language"
             style={{
-              marginLeft: '0.5rem',
+              marginLeft: '0.25rem',
               backgroundColor: 'transparent',
-              border: '1px solid #525252',
-              color: '#c6c6c6',
-              fontSize: '0.75rem',
-              padding: '0.25rem 0.625rem',
+              border: 'none',
+              color: '#6b7684',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              padding: '0.5rem 0.75rem',
               cursor: 'pointer',
-              letterSpacing: '0.5px',
-              transition: 'background-color 70ms, border-color 70ms',
+              borderRadius: '8px',
+              transition: 'background-color 150ms, color 150ms',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = '#262626';
-              e.currentTarget.style.borderColor = '#c6c6c6';
+              e.currentTarget.style.backgroundColor = '#f2f4f6';
+              e.currentTarget.style.color = '#191f28';
             }}
             onMouseLeave={e => {
               e.currentTarget.style.backgroundColor = 'transparent';
-              e.currentTarget.style.borderColor = '#525252';
+              e.currentTarget.style.color = '#6b7684';
             }}
           >
             {locale === 'ko' ? 'EN' : 'KO'}
           </button>
+
+          <a
+            href="#demo"
+            style={{
+              marginLeft: '0.5rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              height: '40px',
+              padding: '0 1.25rem',
+              backgroundColor: '#3182f6',
+              color: '#ffffff',
+              fontSize: '0.9375rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              borderRadius: '10px',
+              transition: 'background-color 150ms',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#1b6ef3')}
+            onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#3182f6')}
+          >
+            {t.header.nav.demo}
+          </a>
         </nav>
       </div>
     </header>
