@@ -106,7 +106,7 @@ export default function ProductsSection() {
                     justifyContent: 'center',
                     fontSize: '1.375rem',
                   }}>
-                    {PRODUCT_EMOJIS[i]}
+                    <span className="emoji">{PRODUCT_EMOJIS[i]}</span>
                   </div>
                   <span style={{
                     fontSize: '0.75rem',

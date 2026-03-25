@@ -85,7 +85,7 @@ export default function AwardsSection() {
                   justifyContent: 'center',
                   fontSize: '1.5rem',
                 }}>
-                  {style.icon}
+                  <span className="emoji">{style.icon}</span>
                 </div>
                 <div>
                   <p style={{

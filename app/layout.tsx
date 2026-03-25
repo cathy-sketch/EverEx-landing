@@ -1,18 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-
-const ibmPlexSans = IBM_Plex_Sans({
-  variable: "--font-ibm-plex-sans",
-  subsets: ["latin"],
-  weight: ["300", "400", "600"],
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: "--font-ibm-plex-mono",
-  subsets: ["latin"],
-  weight: ["400"],
-});
 
 export const metadata: Metadata = {
   title: "Everex — AI 근골격계 재활",
@@ -26,9 +13,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${ibmPlexSans.variable} ${ibmPlexMono.variable}`}>
-        {children}
-      </body>
+      <head>
+        {/* Pretendard — Toss Product Sans와 가장 유사한 오픈소스 한국어 폰트 */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
+        {/* Tossface — 토스 이모지 폰트 */}
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css"
+        />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }

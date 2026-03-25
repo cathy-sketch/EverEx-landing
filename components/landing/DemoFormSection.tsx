@@ -124,7 +124,7 @@ export default function DemoFormSection() {
             margin: '0 auto 1.5rem',
             fontSize: '2rem',
           }}>
-            ✓
+            <span className="emoji">✓</span>
           </div>
           <h2 style={{ fontSize: '1.75rem', fontWeight: 700, color: '#191f28', marginBottom: '0.75rem', letterSpacing: '-0.3px' }}>
             {t.demo.success.title}
@@ -189,7 +189,7 @@ export default function DemoFormSection() {
                 { icon: '🤝', text: '전문 컨설턴트가 직접 연락드립니다' },
               ].map(({ icon, text }) => (
                 <div key={text} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <span style={{ fontSize: '1.125rem' }}>{icon}</span>
+                  <span className="emoji" style={{ fontSize: '1.125rem' }}>{icon}</span>
                   <span style={{ fontSize: '0.9375rem', color: '#6b7684', fontWeight: 500 }}>{text}</span>
                 </div>
               ))}
