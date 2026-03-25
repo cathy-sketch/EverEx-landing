@@ -15,8 +15,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "자유 게시판",
-  description: "Next.js로 만든 자유 게시판",
+  title: "Everex — AI 근골격계 재활",
+  description: "Bringing Personalized Rehabilitation to Everyone. AI 기반 근골격계 재활 디지털 헬스케어 기업 Everex의 MORA 플랫폼.",
 };
 
 export default function RootLayout({
